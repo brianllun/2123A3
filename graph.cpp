@@ -8,18 +8,31 @@ using namespace std;
 class Node{
 public:
     Node();
-    Node(int,string);
+    Node(int i,string s){
+        id = i;
+        name = string;
+    };
     int id;
     string name;
 };
 
 class Graph{
 public:
-    void InsertNode( Node x );
-    void InsertEdge( int x, int y);
+    void InsertNode( Node x ){
+        nodes.insert(x.id,x);
+    };
+    void InsertEdge( int x, int y ){
+        if (!edges.count(x) or !edges.count(y)){
+            cout << "No such nodes!" << endl;
+        } else {
+            edges.insert(x,y);
+        }
+    };
     void CommonNeighbor( int x, int y );
     void ShortestPath(int source, int destination); // You can add more member functions to help your implementation.
 private:
+    map < int, Node > nodes;
+    map < int, vector<int> > edges;
 };
 
 int main(){
@@ -27,16 +40,21 @@ int main(){
     string command;
     int id1, id2;
     string name;
-    while (cin >> command ){
+    while (cin >> command){
         if (command == "InsertNode"){
-            // cin >> id1 >> name; Node n(id1,name); g.InsertNode(n);
+            cin >> id1 >> name;
+            Node n(id1,name);
+            g.InsertNode(n);
         }
         if (command == "InsertEdge"){
-            // cin >> id1 >> id2; g.InsertEdge(id1,id2);
+            cin >> id1 >> id2;
+            g.InsertEdge(id1,id2);
         }else if (command == "CommonNeighbor"){
-            // cin >> id1 >> id2; g.CommonNeighbor(id1, id2);
+            cin >> id1 >> id2;
+            g.CommonNeighbor(id1, id2);
         }else if (command == "ShortestPath"){
-            // cin >> id1 >> id2; g.ShortestPath(id1, id2);
+            // cin >> id1 >> id2;
+            // g.ShortestPath(id1, id2);
         }else if (command == "Exit"){
             return 0;
         }
