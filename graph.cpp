@@ -7,10 +7,10 @@ using namespace std;
 
 class Node{
 public:
-    Node();
+    Node(){};
     Node(int i,string s){
         id = i;
-        name = string;
+        name = s;
     };
     int id;
     string name;
@@ -19,13 +19,13 @@ public:
 class Graph{
 public:
     void InsertNode( Node x ){
-        nodes.insert(x.id,x);
+        nodes[x.id] = x;
     };
     void InsertEdge( int x, int y ){
         if (!edges.count(x) or !edges.count(y)){
             cout << "No such nodes!" << endl;
         } else {
-            edges.insert(x,y);
+            edges[x].push_back(y);
         }
     };
     void CommonNeighbor( int x, int y );
@@ -33,6 +33,7 @@ public:
 private:
     map < int, Node > nodes;
     map < int, vector<int> > edges;
+
 };
 
 int main(){
@@ -50,8 +51,8 @@ int main(){
             cin >> id1 >> id2;
             g.InsertEdge(id1,id2);
         }else if (command == "CommonNeighbor"){
-            cin >> id1 >> id2;
-            g.CommonNeighbor(id1, id2);
+            // cin >> id1 >> id2;
+            // g.CommonNeighbor(id1, id2);
         }else if (command == "ShortestPath"){
             // cin >> id1 >> id2;
             // g.ShortestPath(id1, id2);
@@ -60,3 +61,11 @@ int main(){
         }
     }
 }
+
+// Node::Node(){
+// }
+
+// Node::Node(int i,string s){
+//     id = i;
+//     name = s;
+// }

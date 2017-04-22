@@ -1,5 +1,5 @@
 Compile: graph.cpp
-	g++ -o graph graph.cpp
+	g++ -std=c++11 -o graph graph.cpp
 
 Run: graph
 	./graph
